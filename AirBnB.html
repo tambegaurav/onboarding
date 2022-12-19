@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<!-- saved from url=(0032)http://127.0.0.1:5501/index.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>AirBnB</title>
+    
+<link rel="stylesheet" href="./AirBnB_files/index.css"></head>
+<body>
+<div class="container">
+    <div id="box1" class="main">
+        <div id="logo">
+            airbnb
+        </div>
+    </div>
+    <div id="box2" class="Topics">
+        <button class="b" id="b1" type="button">Anywhere</button>
+        <button class="b" id="b2" type="button">Anytime</button>
+        <button class="b" id="b3" type="button">Add Guest</button>
+        <button class="b" id="search" type="button">
+
+            <!-- <img src="'search.png" alt="Italian Trulli" width="20" height="20"> -->
+        </button>
+    </div>
+    <div id="box3" class="content">
+        <div id="home">
+            Airbnb your home
+        </div>
+        <div id="language">
+            <button class="b" id="bl" type="button">
+                <img src="./AirBnB_files/browser.png" alt="Italian Trulli" width="20" height="20">
+            </button>
+            <!-- <img src="browser.png" alt="Italian Trulli" width="20" height="20"> -->
+            
+        </div>
+        <div id="profile">
+
+        </div>
+    </div>
+    
+
+
+
+</div>
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+
+</body></html>
