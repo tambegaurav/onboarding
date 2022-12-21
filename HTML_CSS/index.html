@@ -5,10 +5,50 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>AirBnB</title>
     <link rel="stylesheet" href="./index.css">
+    
 </head>
 <body>
-<h1>Welcome to Dream11</h1>
+<div class="header_container">
+    <div id="logo_box" class ="logo_container">
+        <div id="logo">
+            airbnb
+        </div>
+    </div>
+    <div id="searchBox" class ="searchBar">
+        <button class="button" id="anywhereButton" type="button" >Anywhere</button>
+        <button class="button" id="anytimeButton" type="button"  >Anytime</button>
+        <button class="button" id="guestButton" type="button" >Add Guest</button>
+        <button class="button" id="search" type="button" >
+           
+            <img src="./AirBnB_files/se.png" alt="Italian Trulli" width="10" height="10">
+            
+        </button>
+    </div>
+    <div id="sideBox" class ="sideBar">
+        <div id="home">
+            Airbnb your home
+        </div>
+        <div id="language">
+            <button class="button" id="languageButton" type="button">
+                <img src="./AirBnB_files/browser.png" alt="Italian Trulli" width="20" height="20">
+            </button>
+            
+        </div>
+        <div id="favourite">
+            <button class="button" id="fvt" type="button">
+                <img src="./AirBnB_files/favorites-icon-png-29.png" alt="Italian Trulli" width="20" height="20">
+            </button>
+        </div>
+    </div>
+
+</div>
+<div class="nav-container" id="nav-container"></div>
+<div class="cardContainer" id="cardContainer"></div>
+
+
+<script type="module" src="./renderHTML.js"></script>
+<script type="module" src="./app.js"></script>
 </body>
 </html>

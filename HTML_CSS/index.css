@@ -1,9 +1,203 @@
+*{
+    box-sizing: border-box;
+}
 body{
-    background-color: #292652;
+    background-color: #fff;
 }
 
 h1{
     color: #fff;
     text-align: center;
     font-size: 42px;
+}
+.header_container{
+    display: flex;
+    box-sizing: border-box;
+    border: 1px ;
+    border-top-style: solid;
+    border-bottom-style: solid ;
+    border-color: grey;
+
+}
+#logo{
+    color: red;
+    box-sizing: border-box;
+    display: block;
+    font-family: 'Courier New', Courier, monospace,sans-serif;
+    padding: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 10px;
+
+}
+#logo_box{
+    
+    padding-top: 10px;
+    width: 40%;
+}
+#searchBox{
+    
+    border: 3px solid lightgray;
+    border-style: groove;
+    border-radius: 20px;
+    padding: 20px;
+    padding-left: 20px;
+    text-align: center;
+    margin: 20px;
+    width: 20%;
+
+}
+#searchBox:hover{
+    cursor: pointer;
+    box-shadow: blueviolet;
+}
+.button{
+border: none;
+background-color: #fff;
+color: #000;    
+}
+
+#sideBox{
+    box-sizing: border-box;
+    display: flex;
+    width: 30%;
+    margin: auto;
+    padding: 20px 10px;
+    justify-content: flex-end;
+}
+#home{
+    padding: 10px;
+    padding-top: 20px;
+    padding-left: 20px;
+    border: #fff;
+    font-weight: bold;
+    margin-right: 0px;
+    cursor: pointer;
+
+}
+#home:hover{
+    
+    background-color: rgb(231, 225, 225);
+    border-radius: 30px; 
+}
+
+#language{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: white;
+    text-decoration: none;
+    
+    
+}
+
+
+#searchBox #anywhereButton,#anytimeButton{                      
+    cursor: pointer;
+    border-right: 1px solid red;
+    
+}
+#searchBox #guestButton{
+    cursor: pointer;
+    color: lightgray;
+    
+}
+#fvt{
+    padding-top:20px;
+    padding-bottom: 20px;
+}
+#languageButton{
+    padding: 10px 10px;
+}
+#languageButton:hover{
+    cursor: pointer;
+    background-color: rgb(231, 225, 225);
+    border-radius: 30px; 
+}
+#search{
+   background-color: red;
+   border-radius: 20px;
+   cursor: pointer;
+}
+
+.nav-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(70px,1fr));
+    padding-top: 10px;
+    padding-bottom: 30px;
+    grid-gap: 10px;
+
+}
+.navButton{
+    padding: 0;
+    background: #fff;
+    border: #fff 1px solid;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.4rem;
+}
+.iconContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    color: #717171;
+    opacity: 0.5;
+    
+}
+.iconContainer:hover{
+    border-bottom: 3px solid black;
+    cursor: pointer;
+    color: black;
+    opacity: 1;
+}
+.navName{
+    
+    font-size: small;
+    align-self: center;
+}
+.cardContainer{
+    display: grid;
+    grid-auto-flow: row dense;
+    grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); 
+    /* grid-template-rows: 400px; */
+    /* padding-left: 10px; */
+    
+    
+    grid-gap: 10px;
+}
+.cardImg{
+    border-radius: 20px;
+    margin-bottom: 10px;
+    width: 100%;
+    height: auto;
+    /* object-fit: cover; */
+}
+#name_rating{
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 5px;
+    font-weight: bold;
+}
+.card{
+    display: flex;
+    flex-direction: column;
+    /* padding-bottom: 20px; */
+}
+#rate{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-weight: bold;
+}
+#distance,#date{
+    
+    font-weight:lighter;
+    width: 50%;
+
+}
+
+.btn, .removeBtn{
+    text-decoration: none;
+    border: none;
+    background-color: rgb(255, 255, 255);
+    
 }
