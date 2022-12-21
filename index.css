@@ -4,15 +4,13 @@
 body{
     background-color: #fff;
 }
-.clear{
-    clear: both;
-}
+
 h1{
     color: #fff;
     text-align: center;
     font-size: 42px;
 }
-.container{
+.header_container{
     display: flex;
     box-sizing: border-box;
     border: 1px ;
@@ -32,12 +30,12 @@ h1{
     margin: 10px;
 
 }
-#box1{
+#logo_box{
     
     padding-top: 10px;
     width: 40%;
 }
-#box2{
+#searchBox{
     
     border: 3px solid lightgray;
     border-style: groove;
@@ -49,17 +47,17 @@ h1{
     width: 20%;
 
 }
-#box2:hover{
+#searchBox:hover{
     cursor: pointer;
     box-shadow: blueviolet;
 }
-.b{
+.button{
 border: none;
 background-color: #fff;
 color: #000;    
 }
 
-#box3{
+#sideBox{
     box-sizing: border-box;
     display: flex;
     width: 30%;
@@ -89,18 +87,16 @@ color: #000;
     border: white;
     text-decoration: none;
     
-    /* background: url('./browser.png') no-repeat center center/cover;;
-      background-attachment: fixed;
-      background-color: #fff; */
+    
 }
-/* why without box2 it is not working */
 
-#box2 #b1,#b2{                      
+
+#searchBox #anywhereButton,#anytimeButton{                      
     cursor: pointer;
     border-right: 1px solid red;
-    /* border-left: 1px solid red; */
+    
 }
-#box2 #b3{
+#searchBox #guestButton{
     cursor: pointer;
     color: lightgray;
     
@@ -109,10 +105,10 @@ color: #000;
     padding-top:20px;
     padding-bottom: 20px;
 }
-#bl{
+#languageButton{
     padding: 10px 10px;
 }
-#bl:hover{
+#languageButton:hover{
     cursor: pointer;
     background-color: rgb(231, 225, 225);
     border-radius: 30px; 
@@ -123,16 +119,15 @@ color: #000;
    cursor: pointer;
 }
 
-.container-grid{
+.nav-container{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(70px,1fr));
-    /* grid-auto-columns: 10px; */
     padding-top: 10px;
     padding-bottom: 30px;
     grid-gap: 10px;
 
 }
-.gb{
+.navButton{
     padding: 0;
     background: #fff;
     border: #fff 1px solid;
@@ -140,7 +135,7 @@ color: #000;
     font-weight: bold;
     font-size: 1.4rem;
 }
-.gf{
+.iconContainer{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -149,18 +144,18 @@ color: #000;
     opacity: 0.5;
     
 }
-.gf:hover{
+.iconContainer:hover{
     border-bottom: 3px solid black;
     cursor: pointer;
     color: black;
     opacity: 1;
 }
-.g{
+.navName{
     
     font-size: small;
     align-self: center;
 }
-.cards{
+.cardContainer{
     display: grid;
     grid-auto-flow: row dense;
     grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); 
@@ -170,7 +165,7 @@ color: #000;
     
     grid-gap: 10px;
 }
-.cimg{
+.cardImg{
     border-radius: 20px;
     margin-bottom: 10px;
     width: 100%;
@@ -183,7 +178,7 @@ color: #000;
     padding-bottom: 5px;
     font-weight: bold;
 }
-.c1{
+.card{
     display: flex;
     flex-direction: column;
     /* padding-bottom: 20px; */
@@ -200,9 +195,9 @@ color: #000;
 
 }
 
-.btn{
+.btn, .removeBtn{
     text-decoration: none;
     border: none;
-    background-color: #fff;
+    background-color: rgb(255, 255, 255);
     
 }
