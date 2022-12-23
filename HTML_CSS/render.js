@@ -202,9 +202,7 @@ const renderNavbar = (props) => {
         let option=createNav(navBarProps)
         navOptions.push(option)
     });
-
-    appendChildUtil(document.getElementById('nav-container'),navOptions)
-    
+    appendChildUtil(document.getElementById('nav-container'),navOptions) 
 }
 renderNavbar(navDetails)
 

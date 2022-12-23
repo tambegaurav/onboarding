@@ -7,17 +7,17 @@ const cardDetail={
     rateList: ['$10']
 }
 const cardDetails=[{imageSrc: 'https://a0.muscache.com/im/pictures/miso/Hosting-19065198/original/ec8a6a9d-45ac-4b78-a605-c41043989ea9.jpeg?im_w=720',
-    description:{name: 'season', rating: 4, distance: '40km', date: '14-20 Jan', rate: '$10'},id: 'card1', isFavourite: false},
+    description:{name: 'season', rating: 4, distance: '40km', date: '14-20 Jan', rate: '$10'},id: '123', isFavourite: false},
     {imageSrc: 'https://a0.muscache.com/im/pictures/miso/Hosting-19065198/original/ec8a6a9d-45ac-4b78-a605-c41043989ea9.jpeg?im_w=720',
-    description:{name: 'season', rating: 4, distance: '40km', date: '14-20 Jan', rate: '$10'},id: 'card2', isFavourite: false},
+    description:{name: 'season', rating: 4, distance: '40km', date: '14-20 Jan', rate: '$10'},id: '124', isFavourite: false},
     {imageSrc: 'https://a0.muscache.com/im/pictures/miso/Hosting-19065198/original/ec8a6a9d-45ac-4b78-a605-c41043989ea9.jpeg?im_w=720',
-    description:{name: 'season', rating: 4, distance: '40km', date: '14-20 Jan', rate: '$10'},id: 'card3', isFavourite: false},
+    description:{name: 'season', rating: 4, distance: '40km', date: '14-20 Jan', rate: '$10'},id: '125', isFavourite: false},
     {imageSrc: 'https://a0.muscache.com/im/pictures/miso/Hosting-19065198/original/ec8a6a9d-45ac-4b78-a605-c41043989ea9.jpeg?im_w=720',
-    description:{name: 'season', rating: 4, distance: '40km', date: '14-20 Jan', rate: '$10'},id: 'card4', isFavourite: false},
+    description:{name: 'season', rating: 4, distance: '40km', date: '14-20 Jan', rate: '$10'},id: '126', isFavourite: false},
     {imageSrc: 'https://a0.muscache.com/im/pictures/miso/Hosting-19065198/original/ec8a6a9d-45ac-4b78-a605-c41043989ea9.jpeg?im_w=720',
-    description:{name: 'season', rating: 4, distance: '40km', date: '14-20 Jan', rate: '$10'},id: 'card5', isFavourite: false},
+    description:{name: 'season', rating: 4, distance: '40km', date: '14-20 Jan', rate: '$10'},id: '127', isFavourite: false},
     {imageSrc: 'https://a0.muscache.com/im/pictures/miso/Hosting-19065198/original/ec8a6a9d-45ac-4b78-a605-c41043989ea9.jpeg?im_w=720',
-    description:{name: 'season', rating: 4, distance: '40km', date: '14-20 Jan', rate: '$10'},id: 'card6', isFavourite: false}]
+    description:{name: 'season', rating: 4, distance: '40km', date: '14-20 Jan', rate: '$10'},id: '128', isFavourite: false}]
 const navDetails=[{iconUrl:'https://a0.muscache.com/pictures/aaa02c2d-9f0d-4c41-878a-68c12ec6c6bd.jpg', iconName: 'Top', id:1}, 
     {iconUrl:'https://a0.muscache.com/pictures/aaa02c2d-9f0d-4c41-878a-68c12ec6c6bd.jpg', iconName: 'County', id:2}, 
     {iconUrl:'https://a0.muscache.com/pictures/aaa02c2d-9f0d-4c41-878a-68c12ec6c6bd.jpg', iconName: 'Rural', id:3}, 

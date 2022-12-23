@@ -134,7 +134,6 @@ color: var(--black);
 }
 .cardContainer{
     display: flex;
-    justify-content: space-between;
     min-width: 500px;
     gap: 10px;
 }

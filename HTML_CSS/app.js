@@ -1,21 +1,18 @@
 import {createCard, appendChildUtil, createButton} from './render.js'
-import {addToLocalStorageUtil,getFromLocalStorageUtil} from './localStorageUtils.js'
+import {addToLocalStorage,getFromLocalStorage} from './localStorageUtils.js'
 
-const favourites=[]
 /**
  * Function to add event for click on remove from favourite
- * @param  parentID id of Parent Element of card
+ * @param  id id of Parent Element of card
  */
-
-const handleUnfavourite = (parentID) => { 
-
+const handleUnfavourite = (id) => { 
+    const favourites= getFromLocalStorage('favourite')
     favourites.forEach(element => {
-        if(element.id=parentID){
-            const filteredFavourites = favourites.filter(value => value !== element)
-            addToLocalStorageUtil('favourite',filteredFavourites) 
-            handleFavouriteLabel(`removeFavourite ${parentID}`)
+        if(element.id=id){
+            const filteredFavourites = favourites.filter(value => value != element)
+            addToLocalStorage('favourite',filteredFavourites) 
+            handleFavouriteLabel(`removeFavourite ${id}`)
         }
-        
     });
 }
 /**
@@ -55,8 +52,9 @@ const addCardToFavourite = (parentID) =>{
             rate: children[5].textContent
         }
     }
-    favourites.push(tempProp)
-    addToLocalStorageUtil('favourite',favourites) //you can source the data from local storage and don't expose the global variable, you could make it private variable in localStorage utility function if it's required
+    const _favourites=getFromLocalStorage('favourite')
+    _favourites.push(tempProp)
+    addToLocalStorage('favourite',_favourites) 
     handleFavouriteLabel(`AddToFav ${parentID}`)
 }
 
@@ -65,19 +63,14 @@ const addCardToFavourite = (parentID) =>{
  * Function to add event listner on 'add to fav' and 'remove form fav' buttons
  */
 const handleEvent = () =>{ 
-    const favouriteCardEvent= document.querySelectorAll('.btn') //try event delegation instead
-    favouriteCardEvent.forEach(cardItem =>{
-        cardItem.addEventListener('click',function(){ 
-            addCardToFavourite(cardItem.parentElement.id)
-
-        })
-    })
-    const unfavouriteCardEvent=document.querySelectorAll('.removeBtn') 
-    unfavouriteCardEvent.forEach(cardItem =>{
-        cardItem.addEventListener('click',function(){
-            handleUnfavourite(cardItem.parentElement.id)
-            renderFavourite()
-        })
+    const favouriteCardEvent = document.getElementById('cardContainer')
+    favouriteCardEvent.addEventListener('click', function(e){
+        if(e.target && e.target.className=='btn'){
+            addCardToFavourite(e.target.parentElement.id)
+        }
+        else if(e.target && e.target.className=='removeBtn'){
+            handleUnfavourite(e.target.parentElement.id)
+        }
     })
 }
 /**
@@ -87,7 +80,7 @@ const renderFavourite = () =>{
     const cards=[] 
     let cardContainer=document.getElementById('cardContainer')
     cardContainer.innerHTML=''
-    const _favourites=getFromLocalStorageUtil('favourite')
+    const _favourites=getFromLocalStorage('favourite')
     _favourites.forEach(element => {
         let card=createCard(element)
         cards.push(card)
