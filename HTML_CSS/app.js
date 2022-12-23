@@ -1,73 +1,49 @@
-import {createCard, appendElement, createButton} from './renderHTML.js'
+import {createCard, appendChildUtil, createButton} from './render.js'
+import {addToLocalStorageUtil,getFromLocalStorageUtil} from './localStorageUtils.js'
 
-let favourites=[]
+const favourites=[]
 /**
  * Function to add event for click on remove from favourite
- * @param  parentElement: Parent Element of card
+ * @param  parentID id of Parent Element of card
  */
-const addUnfavouriteEvent = (parentElement) => {
-    for(let val in favourites){
-        
-        if(favourites[val].id == parentElement.id){
-            favourites.splice(val,1)
-            addToLocalStorage('favourite',favourites)
-            replaceUnfavouriteButton(parentElement)
+
+const handleUnfavourite = (parentID) => { 
+
+    favourites.forEach(element => {
+        if(element.id=parentID){
+            const filteredFavourites = favourites.filter(value => value !== element)
+            addToLocalStorageUtil('favourite',filteredFavourites) 
+            handleFavouriteLabel(`removeFavourite ${parentID}`)
         }
-    }
+        
+    });
 }
-
 /**
- * Function to replace button from 'remove from favourite' to 'add to favourite'
- * @param  parentElement : Parent element of card
+ * Function to change the label of favourite and unfavourite button
+ * @param  id: id of button that needs to be changed 
  */
-const replaceUnfavouriteButton =(parentElement) =>{
-    let buttonProps={
-        buttonID: `AddToFav ${parentElement.id}`,
-        buttonClass:`btn`,
-        buttonText:`Add To Favourite`
+const handleFavouriteLabel = (id) =>{
+    let button=document.getElementById(id)
+    let parentID = button.parentElement.id
+    if (button.textContent=='Add To Favourite'){
+        button.textContent=`Remove From Favourite`
+        button.id=`removeFavourite ${parentID}`
+        button.className='removeBtn'
     }
-    let favouriteButton=createButton(buttonProps)
-    let unfavouriteButton= document.getElementById(`removeFavourite ${parentElement.id}`)
-    parentElement.replaceChild(favouriteButton,unfavouriteButton)
-}
-
-/**
- * Function to replace button from   'add to favourite' to 'remove from favourite'
- * @param  parentElement : Parent element of card
- */
-
-const replaceFavouriteButton = (parentElement) =>{
-    let buttonProps={
-        buttonID: `removeFavourite ${parentElement.id}`,
-        buttonClass:`removeBtn`,
-        buttonText:`Remove From Favourite`
+    else{
+        button.textContent=`Add To Favourite`
+        button.id=`AddToFav ${parentID}`
+        button.className='btn'
     }
-    let unfavouriteButton=createButton(buttonProps)
-    let favouriteButton= document.getElementById(`AddToFav ${parentElement.id}`)
-    parentElement.replaceChild(unfavouriteButton,favouriteButton)
-
 }
-
 /**
  * Function to add properties of card to favourite list
- * @param 
- * { imageSrc: image url which needs to be rendred 
- *   id: unique card id
- *   isFavourite: is this marked favourite
- *  {
- *    name: name of the card
- *    rating: rating of the card
- *    distance: distance
- *    date: date
- *    rate: rate  
- *  } description: navbar option description
- *  } cardItem 
+ * @param parentID: parent ID of card needs to be added
  */
-const addProps = (cardItem) =>{
-
-    let parentElement=cardItem.parentElement
+const addCardToFavourite = (parentID) =>{ 
+    let parentElement=document.getElementById(parentID)
     let children=parentElement.children
-    let tempProp = {
+    let tempProp = { //these are very specific , we should always deal with generic property .
         imageSrc: children[0].src,
         isFavourite: true,
         id: parentElement.id,
@@ -79,68 +55,47 @@ const addProps = (cardItem) =>{
             rate: children[5].textContent
         }
     }
-    
     favourites.push(tempProp)
-    addToLocalStorage('favourite',favourites)
-    replaceFavouriteButton(parentElement)
-    
-
+    addToLocalStorageUtil('favourite',favourites) //you can source the data from local storage and don't expose the global variable, you could make it private variable in localStorage utility function if it's required
+    handleFavouriteLabel(`AddToFav ${parentID}`)
 }
 
-/**
- * Function to add favourite list to local storage
- * @param key : unique key to store the values
- * @param  value : actual value to be stor in local storage
- */
-const addToLocalStorage = (key, value) =>{
-    localStorage.setItem(key, JSON.stringify(value));
-}
 
 /**
- * Function to add event listner on 'add to fav'and 'remove form fav' buttons
+ * Function to add event listner on 'add to fav' and 'remove form fav' buttons
  */
-const addEvent = () =>{
-
-    let cardList= document.querySelectorAll('.btn')
-    cardList.forEach(cardItem =>{
-        cardItem.addEventListener('click',function(){
-            addProps(cardItem)
+const handleEvent = () =>{ 
+    const favouriteCardEvent= document.querySelectorAll('.btn') //try event delegation instead
+    favouriteCardEvent.forEach(cardItem =>{
+        cardItem.addEventListener('click',function(){ 
+            addCardToFavourite(cardItem.parentElement.id)
 
         })
     })
-    let cardList2=document.querySelectorAll('.removeBtn')
-    cardList2.forEach(cardItem =>{
+    const unfavouriteCardEvent=document.querySelectorAll('.removeBtn') 
+    unfavouriteCardEvent.forEach(cardItem =>{
         cardItem.addEventListener('click',function(){
-            addUnfavouriteEvent(cardItem.parentElement)
+            handleUnfavourite(cardItem.parentElement.id)
             renderFavourite()
         })
     })
 }
-
-
 /**
  * Function to render favourites
  */
 const renderFavourite = () =>{
-    let cards=[]
+    const cards=[] 
     let cardContainer=document.getElementById('cardContainer')
     cardContainer.innerHTML=''
-    
-    favourites=JSON.parse(localStorage.getItem('favourite'))
-    for(let element in favourites){
-        
-        let card=createCard(favourites[element])
-        
+    const _favourites=getFromLocalStorageUtil('favourite')
+    _favourites.forEach(element => {
+        let card=createCard(element)
         cards.push(card)
-    }
-   appendElement(cardContainer,cards)
-   addEvent()
+    });
+   appendChildUtil(cardContainer,cards)
+   handleEvent()
 }
-
-
-addEvent()
-
-
+handleEvent()
 let favour=document.getElementById('fvt');
 favour.addEventListener('click',renderFavourite);
 

@@ -1,3 +1,4 @@
+import { cardDetails, navDetails, cardImageProp } from "./constants.js"
 
 /**
 * Function to create Image
@@ -17,9 +18,10 @@ const createImage = (imageProps) => {
     img.src=imageProps.imageSrc
     img.id=imageProps.id
     img.className=imageProps.imageClass
-    img.width=imageProps.width
-    img.height=imageProps.height
-   
+    if((imageProps.width) != undefined || (imageProps.height != undefined)){
+        img.width=imageProps.width  
+        img.height=imageProps.height 
+    }
     return img
 }
 
@@ -38,7 +40,6 @@ const createButton = (buttonProps) => {
     btn.id=buttonProps.buttonID
     btn.className=buttonProps.buttonClass
     btn.appendChild(document.createTextNode(buttonProps.buttonText))
-   
     return btn
 }
 
@@ -50,13 +51,13 @@ const createButton = (buttonProps) => {
  * @returns div element
  */
 
-const getDiv = (divID,divClass,divText) => {
+const createDiv = (divID,divClass,divText) => { 
     let tempDiv=document.createElement('div')
     tempDiv.id=divID
     tempDiv.className=divClass
     if (divText !='')
     {
-        tempDiv.textContent=divText
+        tempDiv.textContent=divText 
     }
     return tempDiv
 }
@@ -67,7 +68,7 @@ const getDiv = (divID,divClass,divText) => {
  * @param  parentElement: Element in which children will be appended 
  * @param  children: List of children to be appended 
  */
-const appendElement =(parentElement, children) => {
+const appendChildUtil =(parentElement, children) => { 
     children.forEach(element => {
         parentElement.append(element)
     });
@@ -93,15 +94,13 @@ const appendElement =(parentElement, children) => {
 
 
 const createCard = (props) => {
-    
-    let  card = getDiv(`${props.id}`,'card','')
-    
-    const imageProps={
+    let  card = createDiv(`${props.id}`,'card','')
+    const imageProps={ 
         imageSrc: props.imageSrc,
-        id: 'cardImg',
-        imageClass: 'cardImg',
-        width: 300,
-        height: 300
+        id: cardImageProp.id,
+        imageClass: cardImageProp.class,
+        width: cardImageProp.width,
+        height: cardImageProp.height
     }
     let img=createImage(imageProps)
 
@@ -113,25 +112,20 @@ const createCard = (props) => {
     if(props.isFavourite==true){
        buttonProps.buttonClass='removeBtn'
        buttonProps.buttonID=`removeFavourite ${props.id}`
-       buttonProps.buttonText='Remove From Favourite'
-       
+       buttonProps.buttonText='Remove From Favourite'  
     }
     let btn=createButton(buttonProps)
-    
-    let name_rating=getDiv('name_rating','cardItem','')
-    let cardName=getDiv('name','name',props.description.name)
-    let cardRating=getDiv('rating','rating',props.description.rating)
+    // too many declaration of variables optimise this
+    let name_rating=createDiv('name_rating','cardItem','')
+    let cardName=createDiv('name','name',props.description.name)
+    let cardRating=createDiv('rating','rating',props.description.rating)
     let nameRatingChildren=[cardName,cardRating]
-    appendElement(name_rating,nameRatingChildren)
-
-    let cardDistance=getDiv('distance','cardItem',props.description.distance)
-    let cardDate=getDiv('date','date',props.description.date)
-    let cardRate=getDiv('rate','rate',props.description.rate)
-    
+    appendChildUtil(name_rating,nameRatingChildren)
+    let cardDistance=createDiv('distance','cardItem',props.description.distance)
+    let cardDate=createDiv('date','date',props.description.date)
+    let cardRate=createDiv('rate','rate',props.description.rate)
     let cardChildren=[img,btn,name_rating,cardDistance,cardDate,cardRate]
-    
-    appendElement(card,cardChildren)
-    
+    appendChildUtil(card,cardChildren)
     return card
 }
 
@@ -147,42 +141,17 @@ const createCard = (props) => {
  *  rateList: list of rates
  * } props 
  */
-const renderCard = (props) =>{
-    let cards=[];
-    for(let i=0;i<props.nameList.length;i++){
-        let cardProps={
-            imageSrc:props.imageList[0],
-            isFavourite: false,
-            id: `card${i+1}`,
-            description:{
-                name: props.nameList[i],
-                rating: props.ratingList[i],
-                distance: props.distanceList[i],
-                date: props.dateList[0],
-                rate: props.rateList[0]
-            }
-        }
-        let card=createCard(cardProps) 
-        cards.push(card)
-     }
-    
-    appendElement(document.getElementById('cardContainer'),cards)
-}
-
-
-
-const cardDetails={
-    imageList: ['https://a0.muscache.com/im/pictures/miso/Hosting-19065198/original/ec8a6a9d-45ac-4b78-a605-c41043989ea9.jpeg?im_w=720'],
-    nameList: ['season','Beach','Indonesia','America','Bali'],
-    ratingList: [4,3,5,6,4],
-    distanceList: ['40km','60km','50km','20km','100km'],
-    dateList: ['14-20 jan'],
-    rateList: ['$10']
+const renderCard = (props) =>{ 
+    const cards=[];
+    props.forEach(element => {
+        let card=createCard(element) 
+        cards.push(card)       
+    });
+    appendChildUtil(document.getElementById('cardContainer'),cards)
 }
 
 renderCard(cardDetails)
 
-///////////////////////////////////////////
 /**
  * Function to create NavOption
  * @param {
@@ -193,28 +162,24 @@ renderCard(cardDetails)
  * @returns navOption with given details
  */
 const createNav = (props) => {
-
     const buttonProps = {
         buttonID:'navButton',
         buttonClass:'navButton',
         buttonText:''
     }
     let button=createButton(buttonProps)
-
-    let div=getDiv('iconContainer','iconContainer','')
-
+    let div=createDiv('iconContainer','iconContainer','')
     const imageProps={
         imageSrc: props.imageSrc,
         id: `navIcon${props.id}`,
         imageClass: 'navIcon',
-        width: 24,
+        width: 24, 
         height: 24
     }
     let img=createImage(imageProps)
-    let navName=getDiv(`navName${props.id}`,'navName',props.name)
-    appendElement(div,[img,navName])
-
-    appendElement(button,[div])
+    let navName=createDiv(`navName${props.id}`,'navName',props.name)
+    appendChildUtil(div,[img,navName])
+    appendChildUtil(button,[div])
     return button
 }
 
@@ -226,30 +191,21 @@ const createNav = (props) => {
  * id: uniqe id of navOption
  * } props 
  */
-const renderNavbar = (props) => {
-
-    let navOptions=[]
-
-    for(let i=0;i<props.iconName.length;i++){
+const renderNavbar = (props) => { 
+    const navOptions=[]
+    props.forEach(element => {
         const navBarProps={
-            imageSrc: props.iconList[0],
-            name: props.iconName[i],
-            id: i+1
+            imageSrc: element.iconUrl,
+            name: element.iconName,
+            id: element.id
         }
         let option=createNav(navBarProps)
         navOptions.push(option)
-    }
-    appendElement(document.getElementById('nav-container'),navOptions)
-    
-}
+    });
 
-const navDetails= {
-    iconList: ['https://a0.muscache.com/pictures/aaa02c2d-9f0d-4c41-878a-68c12ec6c6bd.jpg'],
-    iconName: ['Top','County','Rural','Farms','Trends','OMG','Amazing','Wild','Jungle']
+    appendChildUtil(document.getElementById('nav-container'),navOptions)
+    
 }
 renderNavbar(navDetails)
 
-
-
-
-export {createButton, createImage, createCard, appendElement}
+export {createButton, createImage, createCard, appendChildUtil}
