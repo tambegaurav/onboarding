@@ -1,4 +1,4 @@
-import { cardDetails, navDetails, cardImageProp } from "./constants.js"
+import { cardDetails, navDetails, cardImageProp, searchButtonProps, languageButtonPros, favouriteButtonPros} from "./constants.js"
 
 /**
 * Function to create Image
@@ -61,7 +61,6 @@ const createDiv = (divID,divClass,divText) => {
     }
     return tempDiv
 }
-
 
 /**
  * 
@@ -203,5 +202,62 @@ const renderNavbar = (props) => {
     appendChildUtil(document.getElementById('nav-container'),navOptions) 
 }
 renderNavbar(navDetails)
+
+/**
+ * Function to add Header
+ */
+const renderHeader = () => {
+    const headerProps={
+        logo: createDiv('logo_box','logo_container','airbnb'),
+        searchBox: createDiv('searchBox','searchBar',''),
+        sideBox: createDiv('sideBox','sideBar','')
+    }
+
+    const searchButton={
+        anywhere: createButton(searchButtonProps[0]),
+        anytime: createButton(searchButtonProps[1]),
+        guest: createButton(searchButtonProps[2]),
+        search: createButton(searchButtonProps[3])
+    }
+    const searchImageProps={ 
+        imageSrc: "./AirBnB_files/se.png",
+        id: 'searchIcon',
+        imageClass: 'searchIcon',
+        width: 10,
+        height: 10
+    }
+    let img=createImage(searchImageProps)
+    appendChildUtil(searchButton.search,[img])
+    appendChildUtil(headerProps.searchBox,[searchButton.anywhere,searchButton.anytime,searchButton.guest,searchButton.search])
+    const sideButtons={
+        home: createDiv('home','home','Airbnb your home'),
+        language: createDiv('language','language',''),
+        favourite: createDiv('favourite','favourite','')
+    }
+    const languageImageProps={
+        imageSrc: "./AirBnB_files/browser.png",
+        id: 'languageIcon',
+        imageClass: 'languageIcon',
+        width: 20,
+        height: 20
+    }
+    let languageButton=createButton(languageButtonPros)
+    appendChildUtil(languageButton,[createImage(languageImageProps)])
+    appendChildUtil(sideButtons.language,[languageButton])
+    const favouriteImageProps={
+        imageSrc: "./AirBnB_files/favorites-icon-png-29.png",
+        id: 'favIcon',
+        imageClass: 'favIcon',
+        width: 20,
+        height: 20
+    }
+    let favouriteButton=createButton(favouriteButtonPros)
+    appendChildUtil(favouriteButton,[createImage(favouriteImageProps)])
+    appendChildUtil(sideButtons.favourite,[favouriteButton])
+    appendChildUtil(headerProps.sideBox,[sideButtons.home,sideButtons.language,sideButtons.favourite])
+    const header=document.getElementById('header_container')
+    appendChildUtil(header,[headerProps.logo,headerProps.searchBox,headerProps.sideBox])
+}
+renderHeader();
 
 export {createButton, createImage, createCard, appendChildUtil}

@@ -34,5 +34,20 @@ const cardImageProp ={
     width: 300,
     height: 300
 }
-
-export {cardDetails, navDetails, cardImageProp}
+const searchButtonProps=[
+    {buttonID:'anywhereButton', buttonClass:'button', buttonText:'anywhere'},
+    {buttonID:'anytimeButton', buttonClass:'button', buttonText:'anytime'},
+    {buttonID:'guestButton', buttonClass:'button', buttonText:'guest'},
+    {buttonID:'search', buttonClass:'button', buttonText:''}
+]
+const languageButtonPros={
+    buttonID: 'languageButton',
+    buttonClass: 'button',
+    buttonText:''
+}
+const favouriteButtonPros={
+    buttonID: 'fvt',
+    buttonClass: 'button',
+    buttonText:''
+}
+export {cardDetails, navDetails, cardImageProp, searchButtonProps, languageButtonPros, favouriteButtonPros}
