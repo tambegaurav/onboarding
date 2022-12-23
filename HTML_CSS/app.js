@@ -91,5 +91,3 @@ const renderFavourite = () =>{
 handleEvent()
 let favour=document.getElementById('fvt');
 favour.addEventListener('click',renderFavourite);
-
-

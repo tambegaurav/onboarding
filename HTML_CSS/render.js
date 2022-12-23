@@ -92,9 +92,9 @@ const appendChildUtil =(parentElement, children) => {
 */
 
 
-
 const createCard = (props) => {
     let  card = createDiv(`${props.id}`,'card','')
+    
     const imageProps={ 
         imageSrc: props.imageSrc,
         id: cardImageProp.id,
@@ -102,8 +102,6 @@ const createCard = (props) => {
         width: cardImageProp.width,
         height: cardImageProp.height
     }
-    let img=createImage(imageProps)
-
     const buttonProps={
         buttonClass: 'btn',
         buttonID:`AddToFav ${props.id}`,
@@ -114,17 +112,17 @@ const createCard = (props) => {
        buttonProps.buttonID=`removeFavourite ${props.id}`
        buttonProps.buttonText='Remove From Favourite'  
     }
-    let btn=createButton(buttonProps)
-    // too many declaration of variables optimise this
-    let name_rating=createDiv('name_rating','cardItem','')
-    let cardName=createDiv('name','name',props.description.name)
-    let cardRating=createDiv('rating','rating',props.description.rating)
-    let nameRatingChildren=[cardName,cardRating]
-    appendChildUtil(name_rating,nameRatingChildren)
-    let cardDistance=createDiv('distance','cardItem',props.description.distance)
-    let cardDate=createDiv('date','date',props.description.date)
-    let cardRate=createDiv('rate','rate',props.description.rate)
-    let cardChildren=[img,btn,name_rating,cardDistance,cardDate,cardRate]
+    const cardProps={
+        img: createImage(imageProps),
+        btn: createButton(buttonProps),
+        name_rating: createDiv('name_rating','cardItem',''),
+        cardDistance: createDiv('distance','cardItem',props.description.distance),
+        cardDate: createDiv('date','date',props.description.date),
+        cardRate: createDiv('rate','rate',props.description.rate)
+    }
+    let nameRatingChildren=[createDiv('name','name',props.description.name),createDiv('rating','rating',props.description.rating)]
+    appendChildUtil(cardProps.name_rating,nameRatingChildren)
+    let cardChildren=[cardProps.img, cardProps.btn, cardProps.name_rating, cardProps.cardDistance, cardProps.cardDate, cardProps.cardRate]
     appendChildUtil(card,cardChildren)
     return card
 }
